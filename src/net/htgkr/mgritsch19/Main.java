@@ -10,11 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -58,19 +53,20 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        Function<Double, Integer> f = x -> x.intValue();
-        System.out.println("Function:       " + f.apply(47.11));
-        BinaryOperator<Integer> m = (x, y) -> x % y;
-        System.out.println("BinaryOperator: " + m.apply(5, 2));
-        Supplier<Integer> s = () -> (int) (Math.random() * 10);
-        System.out.println("Supplier:       " + s.get());
-        Predicate<Integer> p = x -> x < 10;
-        System.out.println("Predicate:      " + p.test(5));
-
-        Consumer c = System.out::println;
-        c.accept("hello");
-
+//        Function<Double, Integer> f = x -> x.intValue();
+//        System.out.println("Function:       " + f.apply(47.11));
+//        BinaryOperator<Integer> m = (x, y) -> x % y;
+//        System.out.println("BinaryOperator: " + m.apply(5, 2));
+//        Supplier<Integer> s = () -> (int) (Math.random() * 10);
+//        System.out.println("Supplier:       " + s.get());
+//        Predicate<Integer> p = x -> x < 10;
+//        System.out.println("Predicate:      " + p.test(5));
+//
+//        Consumer c = System.out::println;
+//        c.accept("hello");
+//
+        list.sort();
         Printable printable = w -> System.out.println(w.getName() + " [" + w.getDamageType() + " = " + w.getDamage() + "]");
-        printable.print(list.get(5));
+        printable.print(list.get(1));
     }
 }
