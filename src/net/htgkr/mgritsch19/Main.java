@@ -8,7 +8,6 @@ package net.htgkr.mgritsch19;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -28,19 +27,18 @@ public class Main {
 
     public static void main(String[] args) {
         List<Weapon> list = new LinkedList<>();
-        list.add(new Weapon("Varscona", CombatType.MELEE, DamageType.SLASHING, 11, 3, 5, 4250));
-        list.add(new Weapon("Tuigan Bow", CombatType.RANGED, DamageType.MISSILE, 1, 5, 6, 3500));
-
-        list.sort(new Comparator<Weapon>() {
-            @Override
-            public int compare(Weapon o1, Weapon o2) {
-                return Integer.compare(o1.getDamage(), o2.getDamage());
-            }
-        });
 
         list.sort((w1, w2) -> Integer.compare(w1.getDamage(), w2.getDamage()));
 
-        list.clear();
+        list.sort((w1, w2) -> {
+            if (w1.getCombatType().compareTo(w2.getCombatType()) != 0) {
+                return w1.getCombatType().compareTo(w2.getCombatType());
+            } else if (w1.getDamageType().compareTo(w2.getDamageType()) != 0) {
+                return w1.getDamageType().compareTo(w2.getDamageType());
+            } else {
+                return w1.getName().compareTo(w2.getName());
+            }
+        });
 
         try {
             list = Files.lines(new File("weapons.csv").toPath())
@@ -73,6 +71,6 @@ public class Main {
         c.accept("hello");
 
         Printable printable = w -> System.out.println(w.getName() + " [" + w.getDamageType() + " = " + w.getDamage() + "]");
-        printable.print(list.get(0));
+        printable.print(list.get(5));
     }
 }
