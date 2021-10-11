@@ -23,18 +23,6 @@ public class Main {
     public static void main(String[] args) {
         List<Weapon> list = new LinkedList<>();
 
-        list.sort((w1, w2) -> Integer.compare(w1.getDamage(), w2.getDamage()));
-
-        list.sort((w1, w2) -> {
-            if (w1.getCombatType().compareTo(w2.getCombatType()) != 0) {
-                return w1.getCombatType().compareTo(w2.getCombatType());
-            } else if (w1.getDamageType().compareTo(w2.getDamageType()) != 0) {
-                return w1.getDamageType().compareTo(w2.getDamageType());
-            } else {
-                return w1.getName().compareTo(w2.getName());
-            }
-        });
-
         try {
             list = Files.lines(new File("weapons.csv").toPath())
                     .skip(1)
@@ -65,8 +53,32 @@ public class Main {
 //        Consumer c = System.out::println;
 //        c.accept("hello");
 //
-        list.sort();
+        list = Main.sortDamage(list);
         Printable printable = w -> System.out.println(w.getName() + " [" + w.getDamageType() + " = " + w.getDamage() + "]");
         printable.print(list.get(1));
+
+        Printable printable2 = (w) -> {
+            for (int i = 0; i <= 4; i++) {
+
+            }
+        };
+    }
+
+    public static List<Weapon> sortDamage(List<Weapon> list) {
+        list.sort((w1, w2) -> Integer.compare(w2.getDamage(), w1.getDamage()));
+        return list;
+    }
+
+    public static List<Weapon> sortAlpha(List<Weapon> list) {
+        list.sort((w1, w2) -> {
+            if (w1.getCombatType().compareTo(w2.getCombatType()) != 0) {
+                return w1.getCombatType().compareTo(w2.getCombatType());
+            } else if (w1.getDamageType().compareTo(w2.getDamageType()) != 0) {
+                return w1.getDamageType().compareTo(w2.getDamageType());
+            } else {
+                return w1.getName().compareTo(w2.getName());
+            }
+        });
+        return list;
     }
 }
