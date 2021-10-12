@@ -55,7 +55,7 @@ public class Main {
 //
         list = Main.sortDamage(list);
         Printable printable = w -> System.out.println(w.getName() + " [" + w.getDamageType() + " = " + w.getDamage() + "]");
-        printable.print(list.get(1));
+        printable.print(list.get(0));
 
         Printable printable2 = (w) -> {
             for (int i = 0; i <= 4; i++) {
