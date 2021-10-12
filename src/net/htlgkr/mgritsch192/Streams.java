@@ -1,26 +1,66 @@
 package net.htlgkr.mgritsch192;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class Streams {
 
     public int[] arr = new int[10000];
+    public String[] StringArr = new String[10];
 
     public Streams() {
-        int max = 100;
-        int min = 0;
-        int range = max - min + 1;
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) Math.random() * 101;
+            arr[i] = (int) (Math.random() * 100);
+        }
+
+        char[] chars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+        for (int i = 0; i < 10; i++) {
+            String randomString = "";
+            for (int j = 0; j < 10; j++) {
+                randomString += chars[(int) (Math.random() * chars.length)];
+
+            }
+            StringArr[i] = randomString;
+        }
+
+        List<Weapon> list = new LinkedList<>();
+
+        try {
+            list = Files.lines(new File("weapons.csv").toPath())
+                    .skip(1)
+                    .map(s -> s.split(";"))
+                    .map(s -> new net.htgkr.mgritsch19.Weapon(
+                    s[0],
+                    net.htgkr.mgritsch19.CombatType.valueOf(s[1]),
+                    net.htgkr.mgritsch19.DamageType.valueOf(s[2]),
+                    Integer.parseInt(s[3]),
+                    Integer.parseInt(s[4]),
+                    Integer.parseInt(s[5]),
+                    Integer.parseInt(s[6])
+            ))
+                    .collect(Collectors.toList());
+        } catch (IOException ex) {
+            Logger.getLogger(net.htgkr.mgritsch19.Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public double average(int[] numbers) {
+        return Arrays.stream(numbers)
+                .map(n -> 2 * n + 1)
+                .average()
+                .getAsDouble();
 
     }
 
     public List<String> upperCase(String[] strings) {
-        //implement this
+        return Arrays.stream(StringArr).map(String::toUpperCase).toList();
     }
 
     public Weapon findWeaponWithLowestDamage(List<Weapon> weapons) {
