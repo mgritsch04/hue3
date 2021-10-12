@@ -41,27 +41,38 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//        Function<Double, Integer> f = x -> x.intValue();
-//        System.out.println("Function:       " + f.apply(47.11));
-//        BinaryOperator<Integer> m = (x, y) -> x % y;
-//        System.out.println("BinaryOperator: " + m.apply(5, 2));
-//        Supplier<Integer> s = () -> (int) (Math.random() * 10);
-//        System.out.println("Supplier:       " + s.get());
-//        Predicate<Integer> p = x -> x < 10;
-//        System.out.println("Predicate:      " + p.test(5));
-//
-//        Consumer c = System.out::println;
-//        c.accept("hello");
-//
         list = Main.sortDamage(list);
-        Printable printable = w -> System.out.println(w.getName() + " [" + w.getDamageType() + " = " + w.getDamage() + "]");
-        printable.print(list.get(0));
-
-        Printable printable2 = (w) -> {
-            for (int i = 0; i <= 4; i++) {
-
+        Printable printable = l -> {
+            for (Weapon w : l) {
+                System.out.println(w.getName() + " [" + w.getDamageType() + " = " + w.getDamage() + "]");
             }
         };
+
+        printable.print(list);
+
+        System.out.println("");
+        Printable printTable = l -> {
+            int index = 0;
+            for (int i = 0; i < 4; i++) {
+                System.out.println("+--------------------------------+--------------------------------+--------------------------------+--------------------------------+");
+                for (int j = index; j < index + 4; j++) {
+                    System.out.print("|");
+                    System.out.print(l.get(j).getName() + " [" + l.get(j).getDamageType() + " = " + l.get(j).getDamage() + "]");
+                    String s = String.valueOf(l.get(j).getDamage());
+                    int length = l.get(j).getName().length() + l.get(j).getDamageType().toString().length() + 6 + s.length();
+                    for (int k = length; k < 32; k++) {
+                        System.out.print(" ");
+                    }
+                }
+                index += 4;
+                System.out.print("|");
+                System.out.println("");
+            }
+
+        };
+
+        printTable.print(list);
+
     }
 
     public static List<Weapon> sortDamage(List<Weapon> list) {
