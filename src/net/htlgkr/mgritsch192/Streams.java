@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import jdk.dynalink.Operation;
 
 public class Streams {
 
@@ -78,11 +77,11 @@ public class Streams {
     }
 
     public Weapon findWeaponWithLongestName(List<Weapon> weapons) {
-        return weapons.stream().map(weapon -> new Operation(weapon.getName(), weapon.getName().length())).max(Comparator.comparingInt(Operation::getLength));
+
     }
 
     public List<String> toNameList(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().map(Weapon::getName).collect(Collectors.toList());
     }
 
     public int[] toSpeedArray(List<Weapon> weapons) {
