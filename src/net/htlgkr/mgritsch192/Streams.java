@@ -61,11 +61,11 @@ public class Streams {
     }
 
     public Weapon findWeaponWithLowestDamage(List<Weapon> weapons) {
-        return weapons.stream().min(Comparator.comparing(Weapon::getDamage)).orElseThrow();
+        return weapons.stream().min(Comparator.comparing(Weapon::getDamage)).orElse(null);
     }
 
     public Weapon findWeaponWithHighestStrength(List<Weapon> weapons) {
-        return weapons.stream().max(Comparator.comparing(Weapon::getMinStrength)).orElseThrow();
+        return weapons.stream().max(Comparator.comparing(Weapon::getMinStrength)).orElse(null);
     }
 
     public List<Weapon> collectMissileWeapons(List<Weapon> weapons) {
@@ -74,7 +74,9 @@ public class Streams {
     }
 
     public Weapon findWeaponWithLongestName(List<Weapon> weapons) {
-
+        return (Weapon) weapons.stream().max((o1, o2) -> {
+            return o1.getName().length() - o2.getName().length();
+        }).orElse(null);
     }
 
     public List<String> toNameList(List<Weapon> weapons) {
@@ -82,22 +84,29 @@ public class Streams {
     }
 
     public int[] toSpeedArray(List<Weapon> weapons) {
-        return weapons.stream().map(Weapon::getSpeed).collect(Collectors.toList()).toArray();
+        List<Integer> a = weapons.stream().map(Weapon::getSpeed).collect(Collectors.toList());
+        int[] b = new int[a.size()];
+
+        for (int i = 0; i < a.size(); i++) {
+            b[i] = a.get(i);
+
+        }
+        return b;
     }
 
     public int sumUpValues(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().mapToInt(Weapon::getValue).sum();
     }
 
     public long sumUpHashCodes(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().mapToInt(Weapon::hashCode).sum();
     }
 
     public List<Weapon> removeDuplicates(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().distinct().toList();
     }
 
     public void increaseValuesByTenPercent(List<Weapon> weapons) {
-        //implement this
+        weapons.stream().forEach(weapon -> weapon.setValue((int) (weapon.getValue() * 1.1)));
     }
 }
