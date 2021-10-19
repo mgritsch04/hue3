@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Schule/POS/hue3/src/net/htlgkr/mgritsch192/Streams.java</file>
             <file>file:/C:/Schule/POS/hue3/src/net/htgkr/mgritsch19/Weapon.java</file>
+            <file>file:/C:/Schule/POS/hue3/src/net/htlgkr/mgritsch192/Weapon.java</file>
             <file>file:/C:/Schule/POS/hue3/src/net/htgkr/mgritsch19/Main.java</file>
+            <file>file:/C:/Schule/POS/hue3/src/net/htgkr/mgritsch19/DamageType.java</file>
             <file>file:/C:/Schule/POS/hue3/src/net/htlgkr/mgritsch192/Main.java</file>
+            <file>file:/C:/Schule/POS/hue3/src/net/htgkr/mgritsch19/CombatType.java</file>
             <file>file:/C:/Schule/POS/hue3/test/net/htlgkr/mgritsch192/StreamsTest.java</file>
         </group>
     </open-files>

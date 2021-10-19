@@ -53,14 +53,11 @@ public class Streams {
     }
 
     public double average(int[] numbers) {
-        return Arrays.stream(numbers)
-                .map(n -> 2 * n + 1)
-                .average()
-                .getAsDouble();
+        return Arrays.stream(numbers).average().orElseThrow();
     }
 
     public List<String> upperCase(String[] strings) {
-        return Arrays.stream(StringArr).map(String::toUpperCase).toList();
+        return Arrays.stream(strings).map(String::toUpperCase).toList();
     }
 
     public Weapon findWeaponWithLowestDamage(List<Weapon> weapons) {
@@ -85,7 +82,7 @@ public class Streams {
     }
 
     public int[] toSpeedArray(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().map(Weapon::getSpeed).collect(Collectors.toList()).toArray();
     }
 
     public int sumUpValues(List<Weapon> weapons) {
