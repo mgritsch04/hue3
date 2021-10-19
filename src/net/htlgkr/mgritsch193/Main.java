@@ -5,6 +5,8 @@
  */
 package net.htlgkr.mgritsch193;
 
+import java.util.function.Predicate;
+
 /**
  *
  * @author maxim
@@ -12,6 +14,10 @@ package net.htlgkr.mgritsch193;
 public class Main {
 
     public static void main(String[] args) {
+        final Predicate<Integer> isEven = (t) -> {
+            return (t % 2 == 0);
+        };
+        System.out.println("Die Zahl 6 ist Gerade: " + isEven);
 
     }
 }
