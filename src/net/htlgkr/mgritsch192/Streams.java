@@ -4,16 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import jdk.dynalink.Operation;
 
 public class Streams {
 
     public int[] arr = new int[10000];
     public String[] StringArr = new String[10];
+    public List<Weapon> list = new LinkedList<>();
 
     public Streams() {
         for (int i = 0; i < arr.length; i++) {
@@ -30,16 +33,14 @@ public class Streams {
             StringArr[i] = randomString;
         }
 
-        List<Weapon> list = new LinkedList<>();
-
         try {
             list = Files.lines(new File("weapons.csv").toPath())
                     .skip(1)
                     .map(s -> s.split(";"))
-                    .map(s -> new net.htgkr.mgritsch19.Weapon(
+                    .map(s -> new Weapon(
                     s[0],
-                    net.htgkr.mgritsch19.CombatType.valueOf(s[1]),
-                    net.htgkr.mgritsch19.DamageType.valueOf(s[2]),
+                    CombatType.valueOf(s[1]),
+                    DamageType.valueOf(s[2]),
                     Integer.parseInt(s[3]),
                     Integer.parseInt(s[4]),
                     Integer.parseInt(s[5]),
@@ -47,8 +48,9 @@ public class Streams {
             ))
                     .collect(Collectors.toList());
         } catch (IOException ex) {
-            Logger.getLogger(net.htgkr.mgritsch19.Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Streams.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public double average(int[] numbers) {
@@ -56,7 +58,6 @@ public class Streams {
                 .map(n -> 2 * n + 1)
                 .average()
                 .getAsDouble();
-
     }
 
     public List<String> upperCase(String[] strings) {
@@ -64,19 +65,20 @@ public class Streams {
     }
 
     public Weapon findWeaponWithLowestDamage(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().min(Comparator.comparing(Weapon::getDamage)).orElseThrow();
     }
 
     public Weapon findWeaponWithHighestStrength(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().max(Comparator.comparing(Weapon::getMinStrength)).orElseThrow();
     }
 
     public List<Weapon> collectMissileWeapons(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().filter(weapon -> weapon.getDamageType().equals(DamageType.MISSILE)).collect(Collectors.toList());
+
     }
 
     public Weapon findWeaponWithLongestName(List<Weapon> weapons) {
-        //implement this
+        return weapons.stream().map(weapon -> new Operation(weapon.getName(), weapon.getName().length())).max(Comparator.comparingInt(Operation::getLength));
     }
 
     public List<String> toNameList(List<Weapon> weapons) {

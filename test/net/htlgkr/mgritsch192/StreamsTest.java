@@ -1,20 +1,33 @@
-package net.htlgrieskirchen.pos3.streams;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package net.htlgkr.mgritsch192;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
-import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
+/**
+ *
+ * @author maxim
+ */
 public class StreamsTest {
 
     private List<Weapon> weapons;
@@ -221,19 +234,19 @@ public class StreamsTest {
                 .skip(1)
                 .map(s -> s.split(";"))
                 .map(s -> new Weapon(
-                        s[0],
-                        CombatType.valueOf(s[1]),
-                        DamageType.valueOf(s[2]),
-                        Integer.parseInt(s[3]),
-                        Integer.parseInt(s[4]),
-                        Integer.parseInt(s[5]),
-                        Integer.parseInt(s[6])
-                ))
+                s[0],
+                CombatType.valueOf(s[1]),
+                DamageType.valueOf(s[2]),
+                Integer.parseInt(s[3]),
+                Integer.parseInt(s[4]),
+                Integer.parseInt(s[5]),
+                Integer.parseInt(s[6])
+        ))
                 .collect(Collectors.toList());
     }
 
     @Test(timeout = 4000)
-    public void test00()  throws Throwable  {
+    public void test00() throws Throwable {
         Streams streams0 = new Streams();
         String[] stringArray0 = new String[0];
         List<String> list0 = streams0.upperCase(stringArray0);
@@ -241,7 +254,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test01()  throws Throwable  {
+    public void test01() throws Throwable {
         Streams streams0 = new Streams();
         String[] stringArray0 = new String[6];
         stringArray0[0] = "^t\"1N`D/NyL0u`.";
@@ -255,7 +268,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test02()  throws Throwable  {
+    public void test02() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -267,7 +280,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test03()  throws Throwable  {
+    public void test03() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -279,7 +292,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test04()  throws Throwable  {
+    public void test04() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -291,7 +304,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test05()  throws Throwable  {
+    public void test05() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -303,7 +316,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test06()  throws Throwable  {
+    public void test06() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -315,7 +328,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test07()  throws Throwable  {
+    public void test07() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.NONE;
@@ -327,7 +340,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test08()  throws Throwable  {
+    public void test08() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -339,7 +352,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test09()  throws Throwable  {
+    public void test09() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -352,7 +365,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test10()  throws Throwable  {
+    public void test10() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.NONE;
@@ -364,7 +377,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test11()  throws Throwable  {
+    public void test11() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -376,7 +389,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test12()  throws Throwable  {
+    public void test12() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.RANGED;
@@ -388,7 +401,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test13()  throws Throwable  {
+    public void test13() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -400,7 +413,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test14()  throws Throwable  {
+    public void test14() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -412,7 +425,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test15()  throws Throwable  {
+    public void test15() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -424,7 +437,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test16()  throws Throwable  {
+    public void test16() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -436,7 +449,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test17()  throws Throwable  {
+    public void test17() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.NONE;
@@ -448,7 +461,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test18()  throws Throwable  {
+    public void test18() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.NONE;
@@ -460,7 +473,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test19()  throws Throwable  {
+    public void test19() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.MELEE;
@@ -472,7 +485,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test20()  throws Throwable  {
+    public void test20() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.NONE;
@@ -484,7 +497,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test21()  throws Throwable  {
+    public void test21() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         CombatType combatType0 = CombatType.NONE;
@@ -496,7 +509,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test22()  throws Throwable  {
+    public void test22() throws Throwable {
         Streams streams0 = new Streams();
         int[] intArray0 = new int[1];
         intArray0[0] = 1;
@@ -505,7 +518,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test23()  throws Throwable  {
+    public void test23() throws Throwable {
         Streams streams0 = new Streams();
         int[] intArray0 = new int[3];
         intArray0[0] = (-4052);
@@ -513,16 +526,15 @@ public class StreamsTest {
         assertEquals((-1350.6666666666667), double0, 0.01);
     }
 
-
     @Test(timeout = 4000)
-    public void test36()  throws Throwable  {
+    public void test36() throws Throwable {
         Streams streams0 = new Streams();
         // Undeclared exception!
         try {
             streams0.average((int[]) null);
             fail("Expecting exception: NullPointerException");
 
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             //
             // no message in exception (getMessage() returned null)
             //
@@ -530,7 +542,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test38()  throws Throwable  {
+    public void test38() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         List<Weapon> list0 = streams0.collectMissileWeapons(linkedList0);
@@ -538,7 +550,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test39()  throws Throwable  {
+    public void test39() throws Throwable {
         Streams streams0 = new Streams();
         int[] intArray0 = new int[1];
         double double0 = streams0.average(intArray0);
@@ -546,7 +558,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test40()  throws Throwable  {
+    public void test40() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         streams0.increaseValuesByTenPercent(linkedList0);
@@ -554,7 +566,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test41()  throws Throwable  {
+    public void test41() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         List<Weapon> list0 = streams0.removeDuplicates(linkedList0);
@@ -562,7 +574,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test42()  throws Throwable  {
+    public void test42() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         int int0 = streams0.sumUpValues(linkedList0);
@@ -570,7 +582,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test43()  throws Throwable  {
+    public void test43() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         List<String> list0 = streams0.toNameList(linkedList0);
@@ -578,7 +590,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test44()  throws Throwable  {
+    public void test44() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         int[] intArray0 = streams0.toSpeedArray(linkedList0);
@@ -586,7 +598,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test45()  throws Throwable  {
+    public void test45() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         Weapon weapon0 = streams0.findWeaponWithHighestStrength(linkedList0);
@@ -594,7 +606,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test46()  throws Throwable  {
+    public void test46() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         Weapon weapon0 = streams0.findWeaponWithLongestName(linkedList0);
@@ -602,7 +614,7 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test47()  throws Throwable  {
+    public void test47() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         long long0 = streams0.sumUpHashCodes(linkedList0);
@@ -610,11 +622,11 @@ public class StreamsTest {
     }
 
     @Test(timeout = 4000)
-    public void test48()  throws Throwable  {
+    public void test48() throws Throwable {
         Streams streams0 = new Streams();
         LinkedList<Weapon> linkedList0 = new LinkedList<Weapon>();
         Weapon weapon0 = streams0.findWeaponWithLowestDamage(linkedList0);
         assertNull(weapon0);
     }
-    
+
 }
