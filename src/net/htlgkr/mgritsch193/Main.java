@@ -14,10 +14,17 @@ import java.util.function.Predicate;
 public class Main {
 
     public static void main(String[] args) {
-        final Predicate<Integer> isEven = (t) -> {
-            return (t % 2 == 0);
-        };
-        System.out.println("Die Zahl 6 ist Gerade: " + isEven);
+        final Predicate<Integer> isEven = (n) -> n % 2 == 0;
 
+        final Predicate<Integer> isPositive = (n) -> n > 0;
+
+        final Predicate<String> isShortWord = (s) -> s.length() < 4;
+
+        final Predicate<Integer> isEvenAndPositive = isEven.and(isPositive);
+
+        final Predicate<Integer> isPositiveAndUneven = (Predicate<Integer>) isPositive.and(isEven.negate());
+
+        System.out.println(isEvenAndPositive.test(3));
+        System.out.println(isPositive.test(1));
     }
 }
